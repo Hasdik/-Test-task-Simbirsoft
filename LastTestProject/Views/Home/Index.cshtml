@@ -1,0 +1,175 @@
+﻿@{
+    ViewBag.Title = "Почтовые адреса";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid" ng-controller="EmpCtrl">
+
+    <h1>{{'language' | translate}}:</h1>
+    <button class="btn btn-primary" data-toggle="button" ng-click="changeLanguage('ru')">Русский</button>
+    <button class="btn btn-primary" data-toggle="button" ng-click="changeLanguage2('en')">English</button><br /><br />
+    <table class="table table-bordered table-striped table-condensed table-hover" style="text-align:center; ">
+        <thead>
+            <tr>
+                <td>
+                    <a href="#" ng-click="sortType = 'Id'; sortReverse = !sortReverse">
+                        #
+                        <span ng-show="sortType == 'Id' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'Id' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" ng-click="sortType = 'Country'; sortReverse = !sortReverse">
+                        {{'col1' | translate}}
+                        <span ng-show="sortType == 'Country' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'Country' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" ng-click="sortType = 'City'; sortReverse = !sortReverse">
+                        {{'col2' | translate}}
+                        <span ng-show="sortType == 'City' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'City' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" ng-click="sortType = 'Street'; sortReverse = !sortReverse">
+                        {{'col3' | translate}}
+                        <span ng-show="sortType == 'Street' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'Street' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" ng-click="sortType = 'House'; sortReverse = !sortReverse">
+                        {{'col4' | translate}}
+                        <span ng-show="sortType == 'House' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'House' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" ng-click="sortType = 'Index'; sortReverse = !sortReverse">
+                        {{'col5' | translate}}
+                        <span ng-show="sortType == 'Index' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'Index' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" ng-click="sortType = 'Date'; sortReverse = !sortReverse">
+                        {{'col6' | translate}}
+                        <span ng-show="sortType == 'Date' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'Date' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </td>
+            </tr>
+        </thead>
+        <tr>
+            <td>
+                <form>
+                    <div class="form-group">
+                        <div class="input-group no-margin">
+                            <button type="button" class="btn btn-link" ng-click="f= undefined">
+                                @*<span ng-show="sortType == 'Id' && !sortReverse"></span>*@
+                                <span ng-show="sortType == 'Id' && sortReverse"></span>
+                                <span class="glyphicon glyphicon-refresh" style="color: blue; font-size: 17px;"></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </td>
+            <td>
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-filter"></i></div>
+                            <input type="text" class="form-control checkcolor" placeholder="{{'col1' | translate}}" ng-model="f.Country">
+                        </div>
+                    </div>
+                </form>
+            </td>
+            <td>
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-filter"></i></div>
+                            <input type="text" class="form-control" placeholder="{{'col2' | translate}}" ng-model="f.City">
+                        </div>
+                    </div>
+                </form>
+            </td>
+            <td>
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-filter"></i></div>
+                            <input type="text" class="form-control" placeholder="{{'col3' | translate}}" ng-model="f.Street">
+                        </div>
+                    </div>
+                </form>
+            </td>
+            <td>
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-filter"></i></div>
+                            <input type="number" class="form-control" placeholder="{{'col4' | translate}}" ng-model="f.House">
+                        </div>
+                    </div>
+                </form>
+            </td>
+            <td>
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-filter"></i></div>
+                            <input type="number" class="form-control" placeholder="{{'col5' | translate}}" ng-model="f.Index">
+                        </div>
+                    </div>
+                </form>
+            </td>
+            <td>
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-filter"></i></div>
+                                <input type="datetime-local" class="form-control" placeholder='dd.MM.yyyy h:mm:ss' ng-model="f.Date">
+                    </div>
+                        </div>
+                </form>
+            </td>
+        </tr>
+        <tbody>
+            <tr ng-repeat="vbvb in adress | orderBy:sortType:sortReverse | filter:f | filter:paginate">
+                <td style="{{functionThatReturnsColor1()}}">
+                    {{vbvb.Id}}
+                </td>
+                <td style="{{functionThatReturnsColor2()}}">
+                    {{vbvb.Country}}
+                </td>
+                <td style="{{functionThatReturnsColor3()}}">
+                    {{vbvb.City}}
+                </td>
+                <td style="{{functionThatReturnsColor4()}}">
+                    {{vbvb.Street}}
+                </td>
+                <td style="{{functionThatReturnsColor5()}}">
+                    {{vbvb.House}}
+                </td>
+                <td style="{{functionThatReturnsColor6()}}">
+                    {{vbvb.Index}}
+                </td>
+                <td style="{{functionThatReturnsColor7()}}">
+                    {{vbvb.Date | jsDate | date: 'dd.MM.yyyy h:mm'}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <div uib-pagination total-items="adress.length" ng-model="pagination.currentPage"
+             max-size="10" boundary-links="true" items-per-page="pagination.numPerPage" previous-text="{{'previous-text' | translate}}"
+             next-text="{{'next-text' | translate}}" first-text="{{'first-text' | translate}}" last-text="{{'last-text' | translate}}" class="pagination-sm">
+        </div>
+    </div>
+</div>
+
+ 
