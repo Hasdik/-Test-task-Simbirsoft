@@ -68,8 +68,7 @@
                 <form>
                     <div class="form-group">
                         <div class="input-group no-margin">
-                            <button type="button" class="btn btn-link" ng-click="f= undefined">
-                                @*<span ng-show="sortType == 'Id' && !sortReverse"></span>*@
+                            <button type="button" class="btn btn-link" ng-click="f = undefined">
                                 <span ng-show="sortType == 'Id' && sortReverse"></span>
                                 <span class="glyphicon glyphicon-refresh" style="color: blue; font-size: 17px;"></span>
                             </button>
@@ -132,34 +131,34 @@
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-filter"></i></div>
-                                <input type="datetime-local" class="form-control" placeholder='dd.MM.yyyy h:mm:ss' ng-model="f.Date">
-                    </div>
+                            <input type="datetime-local" class="form-control" placeholder='dd.MM.yyyy h:mm' ng-model="f.Date">
                         </div>
+                    </div>
                 </form>
             </td>
         </tr>
         <tbody>
-            <tr ng-repeat="vbvb in adress | orderBy:sortType:sortReverse | filter:f | filter:paginate">
+            <tr ng-repeat="data in adress | orderBy:sortType:sortReverse | filter:f | filter:paginate">
                 <td style="{{functionThatReturnsColor1()}}">
-                    {{vbvb.Id}}
+                    {{data.Id}}
                 </td>
                 <td style="{{functionThatReturnsColor2()}}">
-                    {{vbvb.Country}}
+                    {{data.Country}}
                 </td>
                 <td style="{{functionThatReturnsColor3()}}">
-                    {{vbvb.City}}
+                    {{data.City}}
                 </td>
                 <td style="{{functionThatReturnsColor4()}}">
-                    {{vbvb.Street}}
+                    {{data.Street}}
                 </td>
                 <td style="{{functionThatReturnsColor5()}}">
-                    {{vbvb.House}}
+                    {{data.House}}
                 </td>
                 <td style="{{functionThatReturnsColor6()}}">
-                    {{vbvb.Index}}
+                    {{data.Index}}
                 </td>
                 <td style="{{functionThatReturnsColor7()}}">
-                    {{vbvb.Date | jsDate | date: 'dd.MM.yyyy h:mm'}}
+                    {{data.Date | jsDate | date: 'dd.MM.yyyy h:mm'}}
                 </td>
             </tr>
         </tbody>
@@ -171,5 +170,3 @@
         </div>
     </div>
 </div>
-
- 

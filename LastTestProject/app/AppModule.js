@@ -31,6 +31,10 @@ AngularApp.config(["$translateProvider", function ($translateProvider) {
         "col4": "House",
         "col5": "Index",
         "col6": "Date",
+        "previous-text": "<",
+        "next-text": ">",
+        "first-text": "<<",
+        "last-text": ">>"
     }
     $translateProvider.translations('ru', ru_translations);
 
@@ -57,7 +61,7 @@ AngularApp.controller("EmpCtrl",["$scope","$http","$translate", function ($scope
     $scope.functionThatReturnsColor2 = function () {
         var style1 = "color: blue";
         var style2 = "color: black";
-        if (($scope.sortType == 'Country' && !$scope.sortReverse) || ($scope.sortType == 'Country' && $scope.sortReverse) || ($scope.f.Country !=""))
+        if (($scope.sortType == 'Country' && !$scope.sortReverse) || ($scope.sortType == 'Country' && $scope.sortReverse))
             return style1;
         else
             return style2;
@@ -151,7 +155,6 @@ AngularApp.controller("EmpCtrl",["$scope","$http","$translate", function ($scope
         .error(function (result) {
             console.log(result);
         });
-      
     }
 }]);
 
