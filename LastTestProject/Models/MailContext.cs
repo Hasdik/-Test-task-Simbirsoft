@@ -8,9 +8,9 @@ namespace LastTestProject.Models
     public class MailContext:DbContext
     {
         public MailContext() :
-         base("DBConnection")
+         base("name=MyDatabaseEntities")
         { }
-        public DbSet<Mailserver> mailservers { get; set; }
+        public virtual DbSet<Mailserver> mailservers { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             try

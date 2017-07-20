@@ -1,160 +1,72 @@
-﻿var AngularApp = angular.module("AngularApp", ['ui.bootstrap', 'pascalprecht.translate']);
-//фильтрация даты
-AngularApp.filter("jsDate", function () {
-    return function (x) {
-        return new Date(parseInt(x.substr(6)));
-    };
-});
+﻿var AppModule = angular.module('AppModule', ['datatables', 'datatables.light-columnfilter', 'pascalprecht.translate',]);
 
-//локализация
-AngularApp.config(["$translateProvider", function ($translateProvider) {
-
-    var ru_translations = {
-        "language": "Язык",
-        "col1": "Страна",
-        "col2": "Город",
-        "col3": "Улица",
-        "col4": "Дом",
-        "col5": "Индекс",
-        "col6": "Дата",
-        "previous-text": "<",
-        "next-text": ">",
-        "first-text": "<<",
-        "last-text": ">>"
-    }
-
-    var en_translations = {
-        "language": "Language",
-        "col1": "Country",
-        "col2": "City",
-        "col3": "Street",
-        "col4": "House",
-        "col5": "Index",
-        "col6": "Date",
-        "previous-text": "<",
-        "next-text": ">",
-        "first-text": "<<",
-        "last-text": ">>"
-    }
-    $translateProvider.translations('ru', ru_translations);
-
-    $translateProvider.translations('en', en_translations);
-
-    $translateProvider.preferredLanguage('ru');
-
-}]);
-
-
-AngularApp.controller("EmpCtrl",["$scope","$http","$translate", function ($scope, $http, $translate) {
-    $scope.sortType = 'Id'; // значение сортировки по умолчанию
-    $scope.sortReverse = false;  // обратная сортировка
-    $scope.adress = "";
-
-    $scope.functionThatReturnsColor1 = function () {
-        var style1 = "color: blue";
-        var style2 = "color: black";
-        if (($scope.sortType == 'Id' && !$scope.sortReverse) || ($scope.sortType == 'Id' && $scope.sortReverse))
-            return style1;
-        else
-            return style2;
-    }
-    $scope.functionThatReturnsColor2 = function () {
-        var style1 = "color: blue";
-        var style2 = "color: black";
-        if (($scope.sortType == 'Country' && !$scope.sortReverse) || ($scope.sortType == 'Country' && $scope.sortReverse))
-            return style1;
-        else
-            return style2;
-    }
-    $scope.functionThatReturnsColor3 = function () {
-        var style1 = "color: blue";
-        var style2 = "color: black";
-        if (($scope.sortType == 'City' && !$scope.sortReverse) || ($scope.sortType == 'City' && $scope.sortReverse))
-            return style1;
-        else
-            return style2;
-    }
-    $scope.functionThatReturnsColor4 = function () {
-        var style1 = "color: blue";
-        var style2 = "color: black";
-        if (($scope.sortType == 'Street' && !$scope.sortReverse) || ($scope.sortType == 'Street' && $scope.sortReverse))
-            return style1;
-        else
-            return style2;
-    }
-    $scope.functionThatReturnsColor5 = function () {
-        var style1 = "color: blue";
-        var style2 = "color: black";
-        if (($scope.sortType == 'House' && !$scope.sortReverse) || ($scope.sortType == 'House' && $scope.sortReverse))
-            return style1;
-        else
-            return style2;
-    }
-    $scope.functionThatReturnsColor6 = function () {
-        var style1 = "color: blue";
-        var style2 = "color: black";
-        if (($scope.sortType == 'Index' && !$scope.sortReverse) || ($scope.sortType == 'Index' && $scope.sortReverse))
-            return style1;
-        else
-            return style2;
-    }
-    $scope.functionThatReturnsColor7 = function () {
-        var style1 = "color: blue";
-        var style2 = "color: black";
-        if (($scope.sortType == 'Date' && !$scope.sortReverse) || ($scope.sortType == 'Date' && $scope.sortReverse))
-            return style1;
-        else
-            return style2;
-    }
-    $scope.numPerPage = 100;
-    //получаем данные
-    $http.get("/Home/GetAllMailAdress")
-    .success(function (result) {
-        $scope.adress = result;
-    })
-    .error(function (result) {
-        console.log(result);
+AppModule.config(["$translateProvider", function ($translateProvider) {
+    $translateProvider.translations('en', {
+        language: "Language",
+        Id: "ID",
+        Country: "Country",
+        City: "City",
+        Street: "Street",
+        House: "House",
+        Index: "Index",
+        Date: "Date",
+        adress: "Mailing addresses"
     });
-    
-    //плагинация
-    $scope.pagination =
-    {
-    totalItems: $scope.adress.length,
-    currentPage: 1,
-    numPerPage: 100
-    };
-    $scope.paginate = function (value) {
-        var start, end, index;
-        start = ($scope.pagination.currentPage - 1) * $scope.pagination.numPerPage;
-        end = start + $scope.pagination.numPerPage;
-        index = $scope.adress.indexOf(value);
-        return (start <= index && index < end);
-    };
-
-    //локализация
-    $scope.changeLanguage = function (lang) {
-        $translate.use("ru");
-        //получаем данные
-        $http.get("/Home/GetAllMailAdress")
-        .success(function (result) {
-            $scope.adress = result;
-        })
-        .error(function (result) {
-            console.log(result);
-        });
-      
-    }
-    //локализация
-    $scope.changeLanguage2 = function (lang) {
-        $translate.use("en");
-        //получаем данные
-        $http.get("/Home/GetAllMailAdressEN")
-        .success(function (result) {
-            $scope.adress = result;
-        })
-        .error(function (result) {
-            console.log(result);
-        });
-    }
+    $translateProvider.translations('ru', {
+        language: "Язык",
+        Id: "Номер",
+        Country: "Страна",
+        City: "Город",
+        Street: "Улица",
+        House: "Дом",
+        Index: "Индекс",
+        Date: "Дата",
+        adress: "Почтовые адреса"
+    });
+    $translateProvider.preferredLanguage('ru');
 }]);
+AppModule.controller('homeCtrl', ['$scope', '$http', '$filter', 'DTOptionsBuilder', 'DTColumnBuilder', "$translate",
+    function ($scope, $http, $filter, DTOptionsBuilder, DTColumnBuilder, $translate) {
 
+      $scope.dtColumns = [
+      DTColumnBuilder.newColumn("Id").withOption('name', 'Id'),
+      DTColumnBuilder.newColumn("Country").withOption('name', 'Country'),
+      DTColumnBuilder.newColumn("City").withOption('name', 'City'),
+      DTColumnBuilder.newColumn("Street").withOption('name', 'Street'),
+      DTColumnBuilder.newColumn("House").withOption('name', 'House'),
+      DTColumnBuilder.newColumn("Index").withOption('name', 'Index'),
+      DTColumnBuilder.newColumn("Date").withOption('name', 'Date').renderWith(function (data, type) {
+          var dt = data.replace("/Date(", "").replace(")/", "");
+          return $filter('date')(dt, 'dd.MM.yyyy'); //фильтрация даты
+      })
+        ]
+        $scope.dtOptions = DTOptionsBuilder.newOptions().withOption('ajax', {
+            dataSrc: "data",
+            url: "/home/getdata",
+            type: "POST"
+        })
+        .withOption('processing', true) //индикатора выполнения
+        .withOption('serverSide', true) // обработка на стророне сервера
+        .withPaginationType('full_numbers') // получаем полные параметры для разбивки на страницы
+        .withDisplayLength(10) // размер пагинации
+        .withOption('aaSorting', [0, 'asc']) // Для столбца сортировки, по умолчанию первый столбец
+        .withDOM('lrtip') //скрываем дефолтный фильтр
+           .withLightColumnFilter({
+               '0': { html: 'input', type: 'text' },
+               '1': { html: 'input', type: 'text' },
+               '2': { html: 'input', type: 'text' },
+               '3': { html: 'input', type: 'text' },
+               '4': { html: 'input', type: 'text' },
+               '5': { html: 'input', type: 'text' },
+               '6': { html: 'input', type: 'text' },
+               '7': { html: 'input', type: 'date' }
+           })
+        //локализация на русский
+        $scope.changeLanguage = function (lang) {
+            $translate.use("ru");
+        }
+        //локализация на английский
+        $scope.changeLanguage2 = function (lang) {
+            $translate.use("en");
+       }
+    }]);

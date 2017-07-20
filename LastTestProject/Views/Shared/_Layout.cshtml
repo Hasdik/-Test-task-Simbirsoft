@@ -1,24 +1,41 @@
 ﻿<!DOCTYPE html>
-<html ng-app="AngularApp">
-
+<html ng-app="AppModule">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.0.1.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    @*1*@
+    <link href="~/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.js"></script>
+
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-resource.js"></script>
+    <script src="~/Scripts/angular-datatables.js"></script>
+    @*2*@
+    @*<script src="~/Scripts/dataTables.lcf.datepicker.fr.js"></script>
+    <script src="~/Scripts/dataTables.lcf.bootstrap3.js"></script>*@
+    <script src="~/Scripts/dataTables.lightColumnFilter.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/buttons.dataTables.css" rel="stylesheet" />
+    <script src="~/Scripts/angular-datatables.light-columnfilter.js"></script>
+    <script src="~/Scripts/dataTables.lightColumnFilter.min.js"></script>
+    @*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
     <script src="https://cdn.rawgit.com/angular-translate/bower-angular-translate/2.5.0/angular-translate.js"></script>
+    <script src="~/Scripts/dataTables.columnFilter.js"></script>
+    <script src="~/Scripts/angular-datatables.columnfilter.min.js"></script>
     <script src="~/app/AppModule.js"></script>
-
-    @Styles.Render("~/Content/css")
 </head>
-
 <body style="padding-top: 0px;">
-
-    @RenderBody() @Scripts.Render("~/bundles/jquery") @RenderSection("scripts", required: false)
-
+    @RenderBody()
+    <hr />
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+    <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
-
 </html>

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace LastTestProject.Models
 {
-    public class Mailserver
+    public partial class Mailserver
     {
         public int Id { get; set; }
         public string Country { get; set; }
